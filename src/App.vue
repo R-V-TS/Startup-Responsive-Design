@@ -49,10 +49,31 @@
           <hr />
         </button>
         <li v-for = "user in infoAboutUs" v-bind:key="user.id">
-          <div class="socialSrc" v-if = "user.showSocial" v-on:mouseout="user.showSocial = false"></div>
+          <ul class="socialSrc" v-if = "user.showSocial" v-on:mouseout="user.showSocial = false">
+            <li class = "socialSrc__tile"><a :href="user.social_networks.facebook"><img :src="require('./assets/Facebook_Logo.png')"></a></li>
+            <li class = "socialSrc__tile"><a :href="user.social_networks.twitter"><img :src="require('./assets/Twitter_Logo.png')"></a></li>
+            <li class = "socialSrc__tile"><a :href="user.social_networks.gplus"><img :src="require('./assets/Google_Plus_Logo.png')"></a></li>
+            <li class = "socialSrc__tile"><a :href="user.social_networks.linkedin"><img :src="require('./assets/LinkedIn-Logo.png')"></a></li>
+          </ul>
           <img :src="user.img" :alt="user.name" v-on:mouseover="user.showSocial = true">
           <h4>{{ user.name }}</h4>
           <p>{{ user.profession }}</p>
+        </li>
+      </ul>
+    </div>
+    <div class="white_path">
+      <h2>Latest works</h2>
+      <hr />
+      <ul class = "worksPanelMenu">
+        <li class = "isActiveCategory">All</li>
+        <li>Branding</li>
+        <li>Design</li>
+        <li>Development</li>
+        <li>Strategy</li>
+      </ul>
+      <ul class = "workTiles">
+        <li class="workTile" v-for = "work in worksShowsList" v-bind:key="work.id">
+          <img :src="work.img" :alt="work.name">
         </li>
       </ul>
     </div>
@@ -60,12 +81,13 @@
 </template>
 
 <script>
-import aboutAsScope from './data'
+import { aboutAsScope, worksList } from './data'
 
 export default {
   name: 'App',
   created () {
     this.take4User()
+    this.loadWorks("all")
   },
   data: function () {
     return {
@@ -75,7 +97,8 @@ export default {
         {id: 3, img: require('./assets/service-3.png'), title: 'Expert Support', description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit. Lorem ipsum.'}
       ],
       infoAboutUs: undefined,
-      startUser: 0
+      startUser: 0,
+      worksShowsList: undefined
     }
   },
   methods: {
@@ -105,6 +128,32 @@ export default {
         i++
       }
       this.infoAboutUs = userList
+    },
+    loadWorks (type) {
+      let list = []
+      if (type === "all") {
+        let i = -1
+        while (list.length < 9) {
+          i++
+          if (i === worksList.length) {
+            break
+          }
+          list.push(worksList[i])
+        }
+      } else {
+        let i = -1
+        while (list.length < 9) {
+          i++
+          if (i === worksList.length) {
+            break
+          }
+          if (worksList[i].type === type) {
+            list.push(worksList[i])
+          }
+        }
+      }
+      this.worksShowsList = list
+      console.log(list)
     }
   }
 }
