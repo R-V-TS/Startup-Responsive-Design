@@ -41,6 +41,15 @@ h4
   margin: auto
   text-align: center
 
+h5
+  font-family: RobotoSlab, serif
+  font-weight: 400
+  color: $white
+  font-size: 18px
+  text-align: center
+  margin: auto
+  padding: 0
+
 h6
   margin: 0
   padding: 0
@@ -62,7 +71,6 @@ p
   font-weight: 400
   color: $lightDark
   font-size: 14px
-  margin: 10px auto
   text-align: center
 
 hr
@@ -86,6 +94,8 @@ button
   border: 2px solid $white
   color: $white
   background: transparent
+  &:hover
+    cursor: pointer
 
 // Top styles
 #top_block
@@ -204,7 +214,7 @@ button
     position: relative
     animation: 0.4s ease-in-out both userTransition
     .socialSrc
-      height: 81%
+      height: 79%
       width: 100%
       background: rgba(0,0,0,0.45)
       position: absolute
@@ -249,7 +259,145 @@ button
   margin-top: 40px
   li
     display: block
-    margin: -2px 0
-    padding: 0
+    margin: 10px 12px
+    position: relative
+    width: 30%
+    animation: 0.7s ease-in-out both userTransition
+    img
+      width: 100%
+      height: 100%
+    .workInfo
+      background: rgba(192, 48, 28, 0.7)
+      width: 100%
+      height: 100%
+      top: 0
+      left: 0
+      position: absolute
+      display: flex
+      flex-direction: column
+      justify-content: center
+      h5
+        text-align: center
+      p
+        margin: -75px
+        color: $white
+      .viewWorkInfo
+        border: 0
+        background: $white
+        color: $darkRed
+        font-family: RobotoSlab, serif
+        font-weight: 400
+        font-size: 14px
+        text-transform: uppercase
+        opacity: 1
+        &:hover
+          cursor: pointer
     &:hover
-      opacity: 0.8
+      cursor: pointer
+
+.aboutUserProject
+  background-image: url("./assets/userProjectBackground.png")
+  display: flex
+  flex-direction: column
+  padding: 70px
+  box-shadow: inset 50vh 50vw 50vmax rgba(192, 48, 28, 0.6)
+  span
+    color: $white
+    font-size: 30px
+    margin: 10px
+  button
+    margin: 50px auto 0 auto
+
+
+.newsTopics
+  display: flex
+  flex-direction: column
+  p
+    padding: 0
+    margin: 0
+  span
+    padding: 0
+    margin: 0
+  .newsTopic
+    display: flex
+    flex-direction: row
+    padding: 30px 0
+    border-bottom: 1px solid $gray
+    &:last-child
+      border: 0
+    img
+      width: 30%
+      height: auto
+      margin-right: 30px
+    .infoAboutTopic
+      display: flex
+      flex-direction: column
+      width: 70%
+      .topicTopInfo
+        display: flex
+        flex-direction: row
+        .dayMonth
+          display: flex
+          flex-direction: column
+          border: 2px solid $lightDark
+          padding: 4px 10px
+          margin-right: 15px
+          .day .month
+            font-family: Montserrat, serif
+            font-weight: 700
+          .day
+            font-size: 24px
+            letter-spacing: 2.4px
+          .month
+            letter-spacing: 1.4px
+        .titleInfo
+          display: flex
+          flex-direction: column
+          margin: auto 0
+          .titleInfo__title
+            color: $lightDark
+            font-family: Montserrat, serif
+            font-size: 16px
+            font-weight: 400
+            text-transform: uppercase
+            &:hover
+              cursor: pointer
+              color: $darkRed
+          .titleInfo__creator
+            margin-top: 10px
+            color: $lightDark
+            font-family: RobotoSlab, serif
+            font-style: italic
+            font-size: 13px
+            font-weight: 400
+            color: $mediumDark
+            text-align: left
+            .titleInfo__info
+              font-style: italic
+              font-size: 13px
+              font-weight: 400
+              color: $mediumDark
+              &:hover
+                cursor: pointer
+                color: $darkRed
+      .blogDescription
+        font-family: RobotoSlab, serif
+        font-size: 14px
+        text-align: justify
+        line-height: 24px
+        color: $lightDark
+        margin: 20px 0
+      .newsTopic__button
+        border: 0
+        color: $mediumDark
+        text-transform: uppercase
+        letter-spacing: 1.3px
+        font-family: RobotoSlab, serif
+        font-weight: 700
+        font-size: 13px
+        margin-left: 0
+        padding: 0
+        &:hover
+          color: $darkRed
+
+

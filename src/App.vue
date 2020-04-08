@@ -65,15 +65,55 @@
       <h2>Latest works</h2>
       <hr />
       <ul class = "worksPanelMenu">
-        <li class = "isActiveCategory">All</li>
-        <li>Branding</li>
-        <li>Design</li>
-        <li>Development</li>
-        <li>Strategy</li>
+        <li v-bind:class = "{isActiveCategory: (workdActiveButton === 'all')}" v-on:click="loadWorks('all')">All</li>
+        <li v-bind:class = "{isActiveCategory: (workdActiveButton === 'Branding')}" v-on:click="loadWorks('Branding')">Branding</li>
+        <li v-bind:class = "{isActiveCategory: (workdActiveButton === 'Design')}" v-on:click="loadWorks('Design')">Design</li>
+        <li v-bind:class = "{isActiveCategory: (workdActiveButton === 'Development')}" v-on:click="loadWorks('Development')">Development</li>
+        <li v-bind:class = "{isActiveCategory: (workdActiveButton === 'Strategy')}" v-on:click="loadWorks('Strategy')">Strategy</li>
       </ul>
       <ul class = "workTiles">
-        <li class="workTile" v-for = "work in worksShowsList" v-bind:key="work.id">
+        <li class="workTile" v-for = "work in worksShowsList" v-bind:key="work.id"
+          v-on:mouseover="work.isInfoShow = true">
+          <div class="workInfo" v-if = "work.isInfoShow"
+            v-on:mouseout="work.isInfoShow = false">
+            <h5>{{ work.name }}</h5>
+            <p>{{ work.type }}</p>
+            <button class="viewWorkInfo">view ></button>
+          </div>
           <img :src="work.img" :alt="work.name">
+        </li>
+      </ul>
+    </div>
+    <div class="aboutUserProject">
+      <span>Do you like OUR WORK so far?</span>
+      <span>Let's talk about YOUR PROJECT!</span>
+      <button>Get In Touch</button>
+    </div>
+    <div class="white_path">
+      <h2>Recent blog posts</h2>
+      <hr />
+      <span>Lorem ipsum dolor sit amet, consetetur sadipscing elitr amet</span>
+      <ul class="newsTopics">
+        <li class="newsTopic" v-for = "blog in blogPostList" v-bind:key="blog.id">
+          <img :src="blog.img" :alt="blog.title">
+          <div class = "infoAboutTopic">
+            <div class="topicTopInfo">
+              <div class="dayMonth">
+                <p class="day">{{ blog.day }}</p>
+                <p class="month">{{ blog.month }}</p>
+              </div>
+              <div class="titleInfo">
+                <p class="titleInfo__title">{{ blog.title }}</p>
+                <p class="titleInfo__creator">
+                  By <span class = "titleInfo__info">{{ blog.author }}</span> in <span class = "titleInfo__info">{{ blog.type }}</span>
+                </p>
+              </div>
+            </div>
+            <span class="blogDescription">
+              {{ blog.description }}
+            </span>
+            <button class = "newsTopic__button">Read more</button>
+          </div>
         </li>
       </ul>
     </div>
@@ -81,13 +121,14 @@
 </template>
 
 <script>
-import { aboutAsScope, worksList } from './data'
+import { aboutAsScope, worksList, news } from './data'
 
 export default {
   name: 'App',
   created () {
     this.take4User()
     this.loadWorks("all")
+    this.loadBlogPosts()
   },
   data: function () {
     return {
@@ -98,7 +139,9 @@ export default {
       ],
       infoAboutUs: undefined,
       startUser: 0,
-      worksShowsList: undefined
+      worksShowsList: undefined,
+      workdActiveButton: 'All',
+      blogPostList: undefined
     }
   },
   methods: {
@@ -130,6 +173,7 @@ export default {
       this.infoAboutUs = userList
     },
     loadWorks (type) {
+      this.worksShowsList = undefined
       let list = []
       if (type === "all") {
         let i = -1
@@ -153,7 +197,11 @@ export default {
         }
       }
       this.worksShowsList = list
-      console.log(list)
+      this.workdActiveButton = type
+    },
+    loadBlogPosts () {
+      this.blogPostList = news
+      /* TODO Paste news downloader configuration. This is stab only*/
     }
   }
 }
