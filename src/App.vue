@@ -2,8 +2,9 @@
   <div id="app">
     <div id="top_block">
       <div class="header">
-        <h3>Startup</h3>
-        <ul class="navbar">
+        <h3 class = "main_logo">Startup</h3>
+        <button :class = "[ isMobileMenuShow ? 'menu_button_mobile_show' : '', 'menu_button_mobile']" v-on:click="isMobileMenuShow = !isMobileMenuShow"><hr /><hr /></button>
+        <ul :class="[isMobileMenuShow ? 'mobile_menu_show' : '', 'navbar navbar_mobile']">
           <li><a href="#">Home</a></li>
           <li><a href="#">Services</a></li>
           <li><a href="#">About</a></li>
@@ -184,6 +185,7 @@ export default {
     this.take4User()
     this.loadWorks("all")
     this.loadBlogPosts()
+    console.log(this.$device)
   },
   data: function () {
     return {
@@ -200,7 +202,9 @@ export default {
       partnerList: partners,
       recallList: recall,
       showedRecallId: 1,
-      contactList: contactBlocks
+      contactList: contactBlocks,
+      isMobileMenuShow: false,
+      userDeviceType: this.$device.mobile || this.$device.android || this.$device.ios
     }
   },
   methods: {
@@ -221,7 +225,8 @@ export default {
     take4User () {
       let userList = []
       let i = this.startUser
-      while (userList.length < 4){
+      const userListLength = this.userDeviceType ? 2 : 4
+      while (userList.length < userListLength){
         if (i >= aboutAsScope.length){
           i = -1
         } else if (i < aboutAsScope.length) {
@@ -271,4 +276,5 @@ export default {
 
 <style lang="sass">
 @import "sass/style"
+@import "sass/mobile_style"
 </style>

@@ -1,0 +1,67 @@
+@import "variables"
+@import "fonts"
+@import "mixins"
+
+@media (max-width: 800px)
+  .navbar_mobile
+    display: none !important
+  .menu_button_mobile
+    display: flex !important
+    flex-direction: column
+    padding: 0
+    border: 0
+    margin-right: 0
+    z-index: 999
+    &:hover
+      cursor: pointer
+    hr
+      width: 30px
+      margin: 5px
+      color: $white
+      background: $white
+  .menu_button_mobile_show
+    hr
+      color: $darkRed
+      background: $darkRed
+      &:first-child
+        margin-bottom: -8px
+        transform: rotate(45deg)
+      &:last-child
+        transform: rotate(-45deg)
+  .mobile_menu_show
+    display: flex !important
+    flex-direction: column !important
+    position: absolute
+    top: 0
+    right: 0
+    padding-right: 10%
+    padding-top: 20%
+    background: rgba(255,255,255,.9)
+    z-index: 99 !important
+    li
+      padding: 15px 50px
+      a
+        color: $darkRed !important
+  .workTile
+    width: 40% !important
+  .newsTopic
+    flex-direction: column !important
+    align-items: center
+    img
+      width: 80% !important
+      margin-bottom: 20px
+    .infoAboutTopic
+      width: 80% !important
+  .partner
+    width: 15% !important
+    img
+      width: 100%
+      object-fit: contain
+  .getInTouch
+    flex-direction: column !important
+    margin: auto !important
+    .getInTouch__contacts
+      flex-direction: row !important
+      width: 90% !important
+    .getInTouch__form
+      width: 100% !important
