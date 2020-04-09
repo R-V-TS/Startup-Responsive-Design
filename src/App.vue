@@ -117,11 +117,66 @@
         </li>
       </ul>
     </div>
+    <div class="gray_path">
+      <ul class="partnersList">
+        <li class = "partner" v-for = "partner in partnerList" v-bind:key="partner.id">
+          <img :src="partner.img" :alt="partner.alt">
+        </li>
+      </ul>
+      <div class="recallsList">
+        <div class="recall">
+          <span class = "recall__text">{{ recallList[showedRecallId - 1].text }}</span>
+          <p class="recall__author">{{ recallList[showedRecallId - 1].author }}</p>
+        </div>
+        <ul class="recallsMenu">
+          <li
+                  v-bind:class = "[ (showedRecallId === call.id) ? 'recallMenu__showedPoint' : '', 'recallMenu__point' ]"
+                  v-for = "call in recallList" v-bind:key="call.id"
+                  v-on:click="changeActiveRecall(call.id)"
+          ></li>
+        </ul>
+      </div>
+    </div>
+    <div class="white_path">
+      <h2>Get in touch</h2>
+      <hr />
+      <span>Lorem ipsum dolor sit amet, consetetur sadipscing elitr amet</span>
+      <div class="getInTouch">
+        <ul class="getInTouch__contacts">
+          <li class="contactItem" v-for = "contact in contactList" v-bind:key="contact.id">
+            <img :src="contact.icon">
+            <div class="contactItem__info">
+              <h4 class = "contactItem__title">{{ contact.title }}</h4>
+              <span class="contactItem__content">{{ contact.content }}</span>
+            </div>
+          </li>
+        </ul>
+        <form class="getInTouch__form">
+          <input class = "messageInput" type="text" placeholder="YOU NAME">
+          <input class = "messageInput" type="text" placeholder="YOU E-MAIL">
+          <input class = "messageInput" type="text" placeholder="YOU SUBJECT">
+          <input class = "messageInput" type="text" placeholder="COMPANY NAME">
+          <textarea name="" id="" cols="30" rows="10" class = "messageInput messageTextarea" placeholder="WRITE YOU MESSAGE"></textarea>
+          <button type="submit" class = "messageButton">Send Message</button>
+          <p class="formMessage">We’ll contact you as as possible. We don’t reply on Monday.</p>
+        </form>
+      </div>
+    </div>
+    <div class="footer">
+      <ul class="companySocialNetworks">
+        <li class = "companySocialNetwork_item"><a href="#"><img :src="require('./assets/twitter.png')"></a></li>
+        <li class = "companySocialNetwork_item"><a href="#"><img :src="require('./assets/twitter.png')"></a></li>
+        <li class = "companySocialNetwork_item"><a href="#"><img :src="require('./assets/twitter.png')"></a></li>
+        <li class = "companySocialNetwork_item"><a href="#"><img :src="require('./assets/twitter.png')"></a></li>
+      </ul>
+      <hr />
+      <span class="copyright">© 2015 Startup, Designed by ShapedThemes</span>
+    </div>
   </div>
 </template>
 
 <script>
-import { aboutAsScope, worksList, news } from './data'
+import { aboutAsScope, worksList, news, partners, recall, contactBlocks } from './data'
 
 export default {
   name: 'App',
@@ -141,7 +196,11 @@ export default {
       startUser: 0,
       worksShowsList: undefined,
       workdActiveButton: 'All',
-      blogPostList: undefined
+      blogPostList: undefined,
+      partnerList: partners,
+      recallList: recall,
+      showedRecallId: 1,
+      contactList: contactBlocks
     }
   },
   methods: {
@@ -202,6 +261,9 @@ export default {
     loadBlogPosts () {
       this.blogPostList = news
       /* TODO Paste news downloader configuration. This is stab only*/
+    },
+    changeActiveRecall (recallId) {
+      this.showedRecallId = recallId
     }
   }
 }

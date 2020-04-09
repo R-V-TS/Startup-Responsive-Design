@@ -48,4 +48,24 @@ export const news = [
     }
 ]
 
-export default { aboutAsScope, worksList, news }
+export const partners = [
+    {id: 1, img: require('./assets/partners/DEORHAM.png'), alt: 'DEORHAM'},
+    {id: 2, img: require('./assets/partners/Ratings.png'), alt: 'Ratings'},
+    {id: 3, img: require('./assets/partners/MALIC_MEDIA.png'), alt: 'MALIC MEDIA'},
+    {id: 4, img: require('./assets/partners/Bcause.png'), alt: 'Bcause'},
+    {id: 5, img: require('./assets/partners/Womgify.png'), alt: 'Womgify'},
+]
+
+export const recall = [
+    {id: 1, author: 'John Doe, Google Inc.', text: 'Hvaing placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum”\n'},
+    {id: 2, author: 'John Woe, Google Inc.', text: 'Hvaing facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum”\n'},
+    {id: 3, author: 'John Bow, Google Inc.', text: 'Hvaing placeat possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum”\n'}
+]
+
+export const contactBlocks = [
+    {id: 1, icon: require('./assets/map-marker.png'), title: "Address", content: '312, 7th Ave, New York, NY 101200, United States of America'},
+    {id: 2, icon: require('./assets/phone-marker.png'), title: "Hotline (24x7)", content: '+65 0052 300, +65 88251 210, +88 01723 511 340'},
+    {id: 3, icon: require('./assets/mail-marker.png'), title: "E-mail", content: 'shapedtheme@gmail.com khalilkode@gmail.com'}
+]
+
+export default { aboutAsScope, worksList, news, partners }
